@@ -15,9 +15,18 @@ const token = yelp.accessToken(clientId, clientSecret)
     });
 console.log(token)
 
-app.get("/", function(req, res) {
-    res.send('Token')
-    console.log(token)
+app.get("/autoComplete", function(req, res) {
+    token.then(function(toke) {
+        console.log(req)
+        client = yelp.client(toke);
+        client.autocomplete({
+            text: 'pizza'
+        }).then(response => {
+            console.log(response.jsonBody.terms[0].text);
+        }).catch(e => {
+            console.log(e);
+        });
+    })
 })
 
 app.get("/search", function(req, res) {

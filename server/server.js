@@ -18,7 +18,7 @@ app.use(function(req,res,next){
 	}
 })
 
-app.use("/yelp", router)
+app.use("/api", router)
 
 app.get('/*', function(req, res){
     res.sendFile(path.join(__dirname, '../index.html'));
