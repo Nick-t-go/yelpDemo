@@ -1,0 +1,26 @@
+{
+  "name": "yelpassessement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "nodemon server/server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nick T",
+  "license": "ISC",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.6",
+    "angular": "^1.6.5",
+    "angular-animate": "^1.6.5",
+    "angular-aria": "^1.6.5",
+    "angular-material": "^1.1.4",
+    "angular-messages": "^1.6.5",
+    "angular-moment": "^1.0.1",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "moment": "^2.18.1",
+    "nodemon": "^1.11.0",
+    "yelp-fusion": "^1.0.3"
+  }
+}

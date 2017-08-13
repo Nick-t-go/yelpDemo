@@ -1,0 +1,77 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Gist
+ @Nick-t-go
+ Sign out
+You could lose access to your GitHub account
+You enabled two-factor authentication, but you haven’t viewed your recovery codes. If you lose your two-factor device, GitHub support will not be able to recover your account for you. Go to the two-factor authentication settings page to view and print your recovery codes.
+ Unwatch 4
+  Star 0
+ Fork 0 gayrondebruin/VegMgmt Private
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Settings Insights 
+Branch: master Find file Copy pathVegMgmt/.gitignore
+be5c82f  on Mar 23
+@Nick-t-go Nick-t-go first commit
+1 contributor
+RawBlameHistory     
+55 lines (42 sloc)  714 Bytes
+node_modules
+archive
+.idea
+client/credentials.js
+client/vendor
+
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
