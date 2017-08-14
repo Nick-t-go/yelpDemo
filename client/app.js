@@ -1,6 +1,6 @@
 'use strict';
 
-window.app = angular.module('yelpApp', ['ui.router', 'ngAnimate', "angularMoment",'ngMaterial']);
+window.app = angular.module('yelpApp', ['ui.router', 'ngAnimate', "angularMoment",'ngMaterial', 'ngMessages']);
 
 
 

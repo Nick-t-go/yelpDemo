@@ -1,10 +1,14 @@
-
+<md-toolbar class="md-warn" layout-margin>
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">Yelp Search</h2>
+    </div>
+  </md-toolbar>
 <div layout="column" ng-cloak layout-margin>
   <md-content class="md-padding" ng-repeat="search in searchTypes" layout-margin>
-    <form ng-submit="$event.preventDefault()">
+    <form ng-submit="$event.preventDefault()" name="{{search.sType}}">
       <!-- <p>Search Yelp for Restaurants</p> -->
       <md-autocomplete
-          md-selected-item="selectedItem"
+          md-selected-item="search.selectedItem"
           md-search-text="search.searchValue"
           md-item-text="item[search.displayString]"
           md-items="item in querySearch(search.searchValue, search.sType)"
@@ -14,6 +18,8 @@
           md-select-on-match="true"
 		  md-selected-item-change="searchChanged(search.sType, item)"
 		  md-search-text-change	="textChange(search.sType)"
+		  md-autoselect = "search.autoSelect"
+		  md-require-match="search.autoSelect"
 		  ng-init="search.searchValue = search.defaultValue ">
         <md-item-template>
           <span md-highlight-text="searchText" md-highlight-flags="^i">{{item[search.displayString]}}</span>
@@ -21,16 +27,19 @@
         <md-not-found>
           No suggestions matching "{{search.searchValue}}" were found.
         </md-not-found>
+        <div ng-show="search.sType ==='categories' && !search.selectedItem" ng-cloak>
+            <div style="color: red">Please select an existing category.</div>
+        </div>
       </md-autocomplete>
       <br/>
     </form>
   </md-content>
   <md-content>
-
      <section layout="row" layout-margin layout-align="center center">
       <md-button flex="45" class="md-raised md-primary" ng-click="search()">Search</md-button>
     </section>
-    </md-content>
+    <p style="color: red" layout="row" layout-margin layout-align="center center">{{error}}</p>
+  </md-content>
 </div>
 <md-progress-linear md-mode="indeterminate" ng-show="waiting"></md-progress-linear>
 <div ng-show="errorMessage && !searchResults">{{errorMessage}}</div>

@@ -37,7 +37,7 @@ router.post('/auto_complete', (req, res, next) => {
   let searchParams = params.latitude ? 
   { text: params.text, latitude: params.latitude, longitude: params.longitude } :
   { text: params.text }
-  client.autocomplete(searchParams)
+  client.autocomplete(req.body.params)
     .then(response => {
       res.json(response.jsonBody);
     })
@@ -46,18 +46,7 @@ router.post('/auto_complete', (req, res, next) => {
 
 router.post('/search', (req, res, next) => {
   const client = yelp.client(req.yelpToken);
-  let params = {
-    term:req.body.params.term,
-    categories: req.body.params.categories
-  }
-  if(req.body.params.latitude){
-    params.latitude = req.body.params.latitude;
-    params.longitude = req.body.params.longitude
-  }else{
-    params.location = req.body.params.location
-  }
-  console.log('params: ', params)
-  client.search(params)
+  client.search(req.body.params)
     .then(response => {
       res.json(response.jsonBody);
     })
@@ -65,7 +54,7 @@ router.post('/search', (req, res, next) => {
 });
 
 router.use((err, req, res, next) => {
-  console.error(err.stack)
+  console.error(err.stack);
   res.status(500).send(err);
 });
 
