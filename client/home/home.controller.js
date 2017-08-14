@@ -42,7 +42,8 @@ app.controller('homeCtrl', function($scope, API, $timeout, $window) {
     }
 
     $scope.search = function(){
-    	console.log($scope.searchTypes)
+    	$scope.error = "";
+    	$scope.waiting = true;
     	var term = $scope.searchTypes[0].searchValue;
     	var location = $scope.searchTypes[1].searchValue;
     	var categories = $scope.searchTypes[2].searchValue;
@@ -53,8 +54,11 @@ app.controller('homeCtrl', function($scope, API, $timeout, $window) {
     		}
     	}
     	API.yelpSearch(term, categories, location).then(function(response){
-    		console.log(response.data.businesses)
+    		$scope.waiting = false;
     		$scope.searchResults = response.data.businesses;
+    		if(response.data.businesses.length === 0){
+    			$scope.error = "Refine Your Search And Try Again"
+    		}
     	})
     }
 

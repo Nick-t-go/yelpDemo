@@ -32,6 +32,8 @@
     </section>
     </md-content>
 </div>
+<md-progress-linear md-mode="indeterminate" ng-show="waiting"></md-progress-linear>
+<div ng-show="errorMessage && !searchResults">{{errorMessage}}</div>
 <div layout="column" layout-align="center center" ng-show="searchResults">
 	<p>Filter By:</p>
  	<md-radio-group ng-model="propertyName" layout="row" layout-align="center center" ng-show="searchResults">
@@ -44,7 +46,7 @@
   	</md-switch>
 
 </div>
-<md-list layout-margin>
+<md-list layout-margin ng-show="searchResults">
       <md-list-item class="md-3-line" ng-repeat="profile in searchResults | orderBy:propertyName:reverse | limitTo: 20" ng-click="goTo(profile.url)">
           <img ng-src="{{profile.image_url}}" class="md-avatar" alt="{{profile.name}}" />
           <div class="md-list-item-text" layout="column">
