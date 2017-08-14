@@ -46,6 +46,7 @@ app.controller('homeCtrl', function($scope, API, $timeout, $window, $anchorScrol
     };
 
     $scope.search = function() {
+    	$scope.searchResults =[];
         if (!$scope.searchTypes[2].selectedItem) {
             $scope.error = "Please Select a Category";
             return;
@@ -66,9 +67,6 @@ app.controller('homeCtrl', function($scope, API, $timeout, $window, $anchorScrol
             $scope.searchResults = response.data.businesses;
             if (response.data.businesses.length === 0) {
                 $scope.error = "Refine Your Search And Try Again";
-            }else{
-            	$anchorScroll.yOffset = 50;
-            	$anchorScroll();
             }
         });
     };

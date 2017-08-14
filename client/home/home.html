@@ -38,12 +38,12 @@
      <section layout="row" layout-margin layout-align="center center">
       <md-button flex="45" class="md-raised md-primary" ng-click="search()">Search</md-button>
     </section>
-    <p style="color: red" layout="row" layout-margin layout-align="center center">{{error}}</p>
   </md-content>
+  <p style="color: red" layout="row" layout-margin layout-align="center center">{{error}}</p>
 </div>
 <md-progress-linear md-mode="indeterminate" ng-show="waiting"></md-progress-linear>
 <div ng-show="errorMessage && !searchResults">{{errorMessage}}</div>
-<div layout="column" layout-align="center center" ng-show="searchResults && !error">
+<div layout="column" layout-align="center center" ng-show="searchResults.length > 0 && !error">
 	<p>Filter By:</p>
  	<md-radio-group ng-model="propertyName" layout="row" layout-align="center center"> 
         <md-radio-button value="name">Name</md-radio-button>
