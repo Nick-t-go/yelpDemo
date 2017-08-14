@@ -1,9 +1,9 @@
-app.controller('homeCtrl', function($scope, API, $timeout, $window) {
+app.controller('homeCtrl', function($scope, API, $timeout, $window, $anchorScroll) {
     $scope.propertyName = 'name';
     $scope.reverse = false;
     $scope.searchTypes = [
-        { label: 'Search', sType: 'terms', displayString: 'text', defaultValue: '', searchValue: "" },
-        { label: 'Location', sType: 'location', displayString: 'formatted_address', defaultValue: 'New York, NY', searchValue: "", latlng: false },
+        { label: 'Search', sType: 'terms', displayString: 'text', defaultValue: '', searchValue: "", autoSelect: false },
+        { label: 'Location', sType: 'location', displayString: 'formatted_address', defaultValue: 'New York, NY', searchValue: "", latlng: false, autoSelect: false },
         { label: 'Categories', sType: 'categories', displayString: 'alias', defaultValue: 'restaurants', selectedItem: 'restaurants', searchValue: "", autoselect: true }
     ];
 
@@ -66,6 +66,9 @@ app.controller('homeCtrl', function($scope, API, $timeout, $window) {
             $scope.searchResults = response.data.businesses;
             if (response.data.businesses.length === 0) {
                 $scope.error = "Refine Your Search And Try Again";
+            }else{
+            	$anchorScroll.yOffset = 50;
+            	$anchorScroll();
             }
         });
     };

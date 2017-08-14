@@ -3,7 +3,7 @@
       <h2 class="md-flex">Yelp Search</h2>
     </div>
   </md-toolbar>
-<div layout="column" ng-cloak layout-margin>
+<div layout="column" ng-cloak layout-margin style="max-height: 70vh">
   <md-content class="md-padding" ng-repeat="search in searchTypes" layout-margin>
     <form ng-submit="$event.preventDefault()" name="{{search.sType}}">
       <!-- <p>Search Yelp for Restaurants</p> -->
@@ -43,9 +43,9 @@
 </div>
 <md-progress-linear md-mode="indeterminate" ng-show="waiting"></md-progress-linear>
 <div ng-show="errorMessage && !searchResults">{{errorMessage}}</div>
-<div layout="column" layout-align="center center" ng-show="searchResults">
+<div layout="column" layout-align="center center" ng-show="searchResults && !error">
 	<p>Filter By:</p>
- 	<md-radio-group ng-model="propertyName" layout="row" layout-align="center center" ng-show="searchResults">
+ 	<md-radio-group ng-model="propertyName" layout="row" layout-align="center center" 
         <md-radio-button value="name">Name</md-radio-button>
         <md-radio-button value="price.length">Price</md-radio-button>
         <md-radio-button value="rating">Rating</md-radio-button>
@@ -53,7 +53,6 @@
     <md-switch ng-model="reverse" aria-label="Reverse">
     {{reverse ? 'Filter Order: Descending' : 'Filter Order: Ascending'}}
   	</md-switch>
-
 </div>
 <md-list layout-margin ng-show="searchResults">
       <md-list-item class="md-3-line" ng-repeat="profile in searchResults | orderBy:propertyName:reverse | limitTo: 20" ng-click="goTo(profile.url)">
