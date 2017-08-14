@@ -31,20 +31,33 @@ router.use((req, res, next) => {
   }
 });
 
-router.get('/auto_complete', (req, res, next) => {
+router.post('/auto_complete', (req, res, next) => {
   const client = yelp.client(req.yelpToken);
-
-  client.autocomplete({ text: 'Restaurants' })
+  let params = req.body.params;
+  let searchParams = params.latitude ? 
+  { text: params.text, latitude: params.latitude, longitude: params.longitude } :
+  { text: params.text }
+  client.autocomplete(searchParams)
     .then(response => {
       res.json(response.jsonBody);
     })
     .catch(next);
 });
 
-router.get('/search', (req, res, next) => {
+router.post('/search', (req, res, next) => {
   const client = yelp.client(req.yelpToken);
-
-  client.search({ term: 'Four Barrel Coffee', location: 'san francisco, ca' })
+  let params = {
+    term:req.body.params.term,
+    categories: req.body.params.categories
+  }
+  if(req.body.params.latitude){
+    params.latitude = req.body.params.latitude;
+    params.longitude = req.body.params.longitude
+  }else{
+    params.location = req.body.params.location
+  }
+  console.log('params: ', params)
+  client.search(params)
     .then(response => {
       res.json(response.jsonBody);
     })
