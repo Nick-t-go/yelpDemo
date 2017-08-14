@@ -45,7 +45,7 @@
 <div ng-show="errorMessage && !searchResults">{{errorMessage}}</div>
 <div layout="column" layout-align="center center" ng-show="searchResults && !error">
 	<p>Filter By:</p>
- 	<md-radio-group ng-model="propertyName" layout="row" layout-align="center center" 
+ 	<md-radio-group ng-model="propertyName" layout="row" layout-align="center center"> 
         <md-radio-button value="name">Name</md-radio-button>
         <md-radio-button value="price.length">Price</md-radio-button>
         <md-radio-button value="rating">Rating</md-radio-button>
@@ -60,9 +60,8 @@
           <div class="md-list-item-text" layout="column">
             <h3>{{profile.name}}</h3>
             <h4>{{profile.location.display_address[0] + " " + profile.location.display_address[1]}}</h4>
-            <p>{{ profile.phone }}</p>
+            <p><small>Rating: </small>{{profile.rating}}</p>
             <div class="md-secondary">
-            <p><small>Rating:</small>{{profile.rating}}</p>
             <p>{{profile.price}}</p>
             </div>
           </div>
