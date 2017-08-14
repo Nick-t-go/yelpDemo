@@ -1,1 +1,23 @@
-<h1>Home</h1>
+<div layout="row" ng-cloak >
+  <md-content class="md-padding" ng-repeat="num in ['Search','Location','Category']">
+    <form ng-submit="$event.preventDefault()">
+      <!-- <p>Search Yelp for Restaurants</p> -->
+      <md-autocomplete
+          md-selected-item="selectedItem"
+          md-search-text="searchText"
+          md-items="item in querySearch(searchText)"
+          md-min-length="1"
+          md-floating-label="{{num}}">
+
+        <md-item-template>
+          <span md-highlight-text="searchText" md-highlight-flags="^i">{{item}}</span>
+        </md-item-template>
+        <md-not-found>
+          No results matching "{{ctrl.searchText}}" were found.
+          <a ng-click="newState(searchText)">Create a new one!</a>
+        </md-not-found>
+      </md-autocomplete>
+      <br/>
+    </form>
+  </md-content>
+</div>

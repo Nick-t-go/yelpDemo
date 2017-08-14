@@ -18,17 +18,22 @@ app.use(function(req,res,next){
 	}
 });
 
+app.use((req, res, next) => {
+  req.app = app;
+  next();
+});
+
 app.use("/api", router);
 
-app.get('/*', function(req, res){
+app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-app.use(function(err, req, res, next){
+app.use((err, req, res, next) => {
 	res.status(err.status || 500).send(err.message || "internal server error");
 });
 
 
-app.listen(3000, function(){
+app.listen(3000, () => {
 	console.log('Example app listening on port 3000!');
 });
